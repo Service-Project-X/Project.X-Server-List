@@ -8,4 +8,3 @@ class MyList(Base):
     id = Column(BIGINT, nullable=False, autoincrement=True, primary_key=True)
     title = Column(VARCHAR(30), nullable=False)
     description = Column(TEXT, nullable=True)
-
