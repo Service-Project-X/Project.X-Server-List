@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-import list.list_controller
+from app.api.api import api_router
 
 app = FastAPI()
 
-app.include_router(list.list_controller.router)
+app.include_router(api_router)
