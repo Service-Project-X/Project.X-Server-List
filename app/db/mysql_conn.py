@@ -6,7 +6,7 @@ app = {
     'user': 'project.x',
     'password': 'project.x',
     'host': 'localhost',
-    'dbconn': 'ProjectX',
+    'dbconn': 'ProjectX_List',
     'port': '3306'
 }
 
