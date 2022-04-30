@@ -1,5 +1,5 @@
 from sqlalchemy import Column, INT, BLOB
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -10,3 +10,6 @@ class MainDivide(Base):
     user_id = Column(INT, nullable=True)
     team_id = Column(INT, nullable=True)
     divider = Column(BLOB, nullable=False, default=False)
+
+    folders = relationship("Folder", back_populates="MainDivide")
+    schedules = relationship("Schedule", back_populates="MainDivide")

@@ -4,20 +4,18 @@ from pydantic import BaseModel
 
 class FolderScheduleBase(BaseModel):
     folder_id: Optional[int] = None
-    schedule_id: Optional[int] = None
-    mainDivide_id: Optional[int] = None
+    child_folder_id: Optional[int] = None
+    name: Optional[str] = None
 
 class FolderScheduleCreate(FolderScheduleBase):
-    pass
+    name: str
 
 class FolderScheduleUpdate(FolderScheduleBase):
-    pass
+    name: str
 
 class FolderScheduleInDBScheduleBase(FolderScheduleBase):
     id: int
-    folder_id: Optional[int] = None
-    schedule_id: Optional[int] = None
-    mainDivide_id: Optional[int] = None
+    name: str
 
     class Config:
         orm_mode = True
