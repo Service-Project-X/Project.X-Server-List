@@ -32,6 +32,3 @@ class MentionedUserInDBBase(MentionedUserBase):
 
 class MentionedUser(MentionedUserInDBBase):
     pass
-
-# class ListInDB(FolderScheduleInDBScheduleBase):
-#     pass
