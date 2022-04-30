@@ -13,7 +13,7 @@ class FolderScheduleCreate(FolderScheduleBase):
 class FolderScheduleUpdate(FolderScheduleBase):
     pass
 
-class FolderInDBScheduleBase(FolderScheduleBase):
+class FolderScheduleInDBScheduleBase(FolderScheduleBase):
     id: int
     folder_id: Optional[int] = None
     schedule_id: Optional[int] = None
@@ -22,5 +22,5 @@ class FolderInDBScheduleBase(FolderScheduleBase):
     class Config:
         orm_mode = True
 
-class FolderInDBSchedule(FolderInDBScheduleBase):
+class FolderScheduleInDBSchedule(FolderScheduleInDBScheduleBase):
     pass

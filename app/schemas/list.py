@@ -23,5 +23,5 @@ class ListInDBBase(ListBase):
 class List(ListInDBBase):
     pass
 
-# class ListInDB(FolderInDBScheduleBase):
+# class ListInDB(FolderScheduleInDBScheduleBase):
 #     pass

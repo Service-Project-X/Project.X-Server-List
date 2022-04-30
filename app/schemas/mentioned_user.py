@@ -15,7 +15,10 @@ class MentionedUserCreate(MentionedUserBase):
     email: str
 
 class MentionedUserUpdate(MentionedUserBase):
-    pass
+    schedule_id: int
+    nickname: str
+    name: str
+    email: str
 
 class MentionedUserInDBBase(MentionedUserBase):
     id: int
@@ -30,5 +33,5 @@ class MentionedUserInDBBase(MentionedUserBase):
 class MentionedUser(MentionedUserInDBBase):
     pass
 
-# class ListInDB(FolderInDBScheduleBase):
+# class ListInDB(FolderScheduleInDBScheduleBase):
 #     pass

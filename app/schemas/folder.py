@@ -6,7 +6,7 @@ class FolderBase(BaseModel):
     name: Optional[str] = None
 
 class FolderCreate(FolderBase):
-    title: str
+    name: str
 
 class FolderUpdate(FolderBase):
     pass

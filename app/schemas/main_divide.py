@@ -15,7 +15,10 @@ class MainDivideCreate(MainDivideBase):
     divider: bool = False
 
 class MainDivideUpdate(MainDivideBase):
-    pass
+    user_team_id: int
+    user_id: int
+    team_id: int
+    divider: bool
 
 class MainDivideInDBBase(MainDivideBase):
     id: int
