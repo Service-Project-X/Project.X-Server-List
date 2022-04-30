@@ -3,19 +3,26 @@ from typing import Optional
 from pydantic import BaseModel
 
 class FolderBase(BaseModel):
-    mainDivide_id: Optional[int] = None
-    name: Optional[str] = None
+    user_team_id: Optional[int] = None
+    user_id: Optional[int] = None
+    team_id: Optional[int] = None
+    divider: Optional[bool] = None
 
 class FolderCreate(FolderBase):
-    name: str
+    user_team_id: int
+    user_id: int
+    team_id: int
+    divider: int
 
 class FolderUpdate(FolderBase):
     pass
 
 class FolderInDBBase(FolderBase):
     id: str
-    mainDivide_id: int
-    name: str
+    user_team_id: int
+    user_id: int
+    team_id: int
+    divider: int
 
     class Config:
         orm_mode = True
