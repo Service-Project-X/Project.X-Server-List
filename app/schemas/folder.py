@@ -7,6 +7,7 @@ class FolderBase(BaseModel):
     name: Optional[str] = None
 
 class FolderCreate(FolderBase):
+    mainDivide_id: int
     name: str
 
 class FolderUpdate(FolderBase):

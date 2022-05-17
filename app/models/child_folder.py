@@ -4,13 +4,13 @@ from sqlalchemy.orm import declarative_base, relationship
 Base = declarative_base()
 
 class ChildFolder(Base):
-    __tablename__ = 'ChildFolder'
+    __tablename__ = 'ChildFolderBase'
     id = Column(INT, nullable=False, autoincrement=True, primary_key=True)
     folder_id = Column(INT, ForeignKey("Folder.id"), nullable=True)
-    child_folder_id = Column(INT, ForeignKey("ChildFolder.id"), nullable=True)
+    child_folder_id = Column(INT, ForeignKey("ChildFolderBase.id"), nullable=True)
     name = Column(VARCHAR, nullable=False)
 
-    folder = relationship("Folder", back_populates="ChildFolder")
-    child_folder = relationship("ChildFolder", back_populates="ChildFolder")
+    folder = relationship("Folder", back_populates="ChildFolderBase")
+    child_folder = relationship("ChildFolderBase", back_populates="ChildFolderBase")
 
     schedules = relationship("Schedule", back_populates="MainDivide")

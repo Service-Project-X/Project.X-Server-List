@@ -1,4 +1,4 @@
-from sqlalchemy import Column, INT, VARCHAR, ForeignKey
+from sqlalchemy import Column, INT, BLOB
 from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
@@ -6,10 +6,10 @@ Base = declarative_base()
 class Folder(Base):
     __tablename__ = 'Folder'
     id = Column(INT, nullable=False, autoincrement=True, primary_key=True)
-    mainDivide_id = Column(INT, ForeignKey("MainDivide.id"))
-    name = Column(VARCHAR(45), nullable=False)
+    user_team_id = Column(INT, nullable=False)
+    auth_id = Column(INT, nullable=False)
+    team_id = Column(INT, nullable=False)
+    divider = Column(BLOB, nullable=False)
 
-    mainDivide = relationship("MainDivide", back_populates="Folder")
-
-    ChildFolders = relationship("ChildFolder", back_populates="Folder")
+    ChildFolders = relationship("ChildFolderBase", back_populates="Folder")
     Schedules = relationship("Schedule", back_populates="Folder")
