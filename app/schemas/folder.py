@@ -12,7 +12,7 @@ class FolderCreate(FolderBase):
     user_team_id: int
     user_id: int
     team_id: int
-    divider: int
+    divider: bool
 
 class FolderUpdate(FolderBase):
     pass
@@ -22,7 +22,7 @@ class FolderInDBBase(FolderBase):
     user_team_id: int
     user_id: int
     team_id: int
-    divider: int
+    divider: bool
 
     class Config:
         orm_mode = True

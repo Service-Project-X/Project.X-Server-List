@@ -9,7 +9,7 @@ class Schedule(Base):
     folder_id = Column(INT, ForeignKey("Folder.id"), nullable=True)
     child_folder_id = Column(INT, ForeignKey("ChildFolderBase.id"), nullable=True)
     title = Column(VARCHAR(100), nullable=False)
-    content = Column(VARCHAR(45), nullable=True)
+    content = Column(VARCHAR(300), nullable=True)
     image = Column(VARCHAR(100), nullable=True)
 
     folder = relationship("Folder", back_populates="Schedule")
