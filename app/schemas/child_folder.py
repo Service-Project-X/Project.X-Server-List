@@ -7,14 +7,16 @@ class ChildFolderBase(BaseModel):
     child_folder_id: Optional[int] = None
     name: Optional[str] = None
 
-class ChildFolderCreateBase(ChildFolderBase):
+class ChildFolderCreate(ChildFolderBase):
     name: str
 
-class ChildFolderUpdateBase(ChildFolderBase):
+class ChildFolderUpdate(ChildFolderBase):
     name: str
 
 class ChildFolderInDBBase(ChildFolderBase):
     id: int
+    folder_id = Optional[int]
+    child_folder_id = Optional[int]
     name: str
 
     class Config:

@@ -10,28 +10,12 @@ engine = engineconn()
 session = engine.sessionmaker()
 
 class CRUDFolder:
-
-    def get_multiple(self, folder_id) -> List[ChildFolder or Schedule]:
-        child_folders = session.query(ChildFolder).filter_by(id=folder_id).all()
-        schedules = session.query(Schedule).filter_by(id=folder_id).all()
-        return [child_folders, schedules]
-
+    # 공유 폴더는 팀당 하나 개인 폴더는 사람 수만큼이니까 사람 추가 될 때마다 추가 해야 될텐데
     def create(self, create_folder: FolderCreate):
-        created_folder = Folder(mainDivide_id=create_folder.mainDivide_id, name=create_folder.name)
+        created_folder = Folder(user_team_id=create_folder.user_team_id, user_id=create_folder.user_id, team_id=create_folder.team_id, divider=create_folder.divider)
         session.add(created_folder)
         # null 반환함, 다른 걸로 바꾸기
         return session.commit()
-
-    def update(self, folder_id: str, update_folder: FolderUpdate) -> Folder:
-        found_folder = session.query(Folder).filter_by(id=folder_id).first()
-        found_folder.name = update_folder.name
-
-        session.add(found_folder)
-        session.commit()
-        session.refresh(found_folder)
-        print("print found_folder", found_folder)
-        # 반환값 때문에 에러남
-        return found_folder
 
     def delete(self, folder_id: str):
         found_folder = session.query(Folder).filter_by(id=folder_id).first()

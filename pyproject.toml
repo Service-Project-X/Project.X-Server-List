@@ -11,6 +11,7 @@ uvicorn = "^0.17.6"
 SQLAlchemy = "^1.4.35"
 PyMySQL = "^1.0.2"
 cryptography = "^36.0.2"
+pytest = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
 
