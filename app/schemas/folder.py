@@ -18,7 +18,7 @@ class FolderUpdate(FolderBase):
     pass
 
 class FolderInDBBase(FolderBase):
-    id: str
+    id: Optional[int]
     user_team_id: int
     user_id: int
     team_id: int
@@ -26,6 +26,7 @@ class FolderInDBBase(FolderBase):
 
     class Config:
         orm_mode = True
+        arbitrary_types_allowed = True
 
 class Folder(FolderInDBBase):
     pass

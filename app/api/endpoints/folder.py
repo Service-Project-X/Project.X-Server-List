@@ -1,12 +1,15 @@
-from typing import List
+import json
+from typing import List, Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, status
+from fastapi.encoders import jsonable_encoder
 
 from app.crud.crud_folder import CRUDFolder
 from app.crud.crud_schedule import CRUDSchedule
-from app.models.child_folder import ChildFolder
 from app.crud.crud_child_folder import CRUDChildFolder
+from app.models.folder import Folder
 from app.models.schedule import Schedule
+from app.models.child_folder import ChildFolder
 from app.schemas import folder, custom_response_type
 
 router = APIRouter()
@@ -23,12 +26,12 @@ async def get_all(folder_id: int) -> [ChildFolder or Schedule]:
     new_custom_response_type.data = [child_folders, schedules]
     return new_custom_response_type
 
-@router.post("/", response_model=custom_response_type.CustomResponseType)
+@router.post("/", status_code=status.HTTP_201_CREATED, response_model=custom_response_type.CustomResponseType)
 async def create_list(create_folder: folder.FolderCreate):
-    created_folder = folder_repository.create(create_folder)
-    new_custom_response_type = custom_response_type.CustomResponseType
-    new_custom_response_type.data = created_folder
-    return new_custom_response_type
+    created_folder: Folder = folder_repository.create(create_folder)
+    new_custom_response_type = custom_response_type.CustomResponseType[Any](message=None, data=created_folder)
+    # new_custom_response_type.data = created_folder
+    return jsonable_encoder(new_custom_response_type)
 
 # 필요할까?
 # @router.put("/{folder_id}", response_model=custom_response_type.CustomResponseType)
