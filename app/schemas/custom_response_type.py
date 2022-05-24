@@ -1,13 +1,10 @@
 from typing import Optional
 
-from pydantic import BaseModel
 from typing import TypeVar, Generic
+from pydantic.generics import GenericModel
 
 T = TypeVar('T')
 
-class CustomResponseTypeBase(BaseModel, Generic[T]):
-    message: Optional[str] = None
-    data: Optional[T] = None
-
-class CustomResponseType(CustomResponseTypeBase):
-    pass
+class CustomResponseType(GenericModel, Generic[T]):
+    message: Optional[str]
+    data: Optional[T]

@@ -1,16 +1,20 @@
-from sqlalchemy import Column, ForeignKey, INT, VARCHAR
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, ForeignKey
+from sqlalchemy.types import Integer, String
+from sqlalchemy.orm import relationship
+from app.db.mysql_conn import Base
+from app.models.schedule import Schedule
 
-Base = declarative_base()
 
 class ChildFolder(Base):
-    __tablename__ = 'ChildFolderBase'
-    id = Column(INT, nullable=False, autoincrement=True, primary_key=True)
-    folder_id = Column(INT, ForeignKey("Folder.id"), nullable=True)
-    child_folder_id = Column(INT, ForeignKey("ChildFolderBase.id"), nullable=True)
-    name = Column(VARCHAR, nullable=False)
+    __tablename__ = 'child_folders'
+    id = Column(Integer, nullable=False, autoincrement=True, primary_key=True)
+    folder_id = Column(Integer, ForeignKey("folders.id"), nullable=True)
+    child_folder_id = Column(Integer, ForeignKey("child_folders.id"), nullable=True)
 
-    folder = relationship("Folder", back_populates="ChildFolderBase")
-    child_folder = relationship("ChildFolderBase", back_populates="ChildFolderBase")
+    name = Column(String(45), nullable=False)
 
-    schedules = relationship("Schedule", back_populates="MainDivide")
+    folder = relationship("Folder", back_populates="child_folders")
+    child_folder = relationship("ChildFolder", back_populates="child_folders")
+
+    schedules = relationship("Schedule", back_populates="child_folder")
+    child_folders = relationship("ChildFolder", remote_side="ChildFolder.id", back_populates="child_folder")

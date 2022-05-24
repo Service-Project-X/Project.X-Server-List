@@ -15,12 +15,13 @@ class ChildFolderUpdate(ChildFolderBase):
 
 class ChildFolderInDBBase(ChildFolderBase):
     id: int
-    folder_id = Optional[int]
-    child_folder_id = Optional[int]
+    folder_id: Optional[int]
+    child_folder_id: Optional[int]
     name: str
 
     class Config:
         orm_mode = True
+        arbitrary_types_allowed = True
 
 class ChildFolder(ChildFolderInDBBase):
     pass

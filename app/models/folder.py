@@ -1,16 +1,19 @@
-from sqlalchemy import Column, INT, BLOB
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column
+from sqlalchemy.types import Integer, Boolean
+from sqlalchemy.orm import relationship
+from app.db.mysql_conn import Base
+from app.models.child_folder import ChildFolder
+from app.models.schedule import Schedule
 
-Base = declarative_base()
 
 class Folder(Base):
-    __tablename__ = 'Folder'
-    id = Column(INT, nullable=False, autoincrement=True, primary_key=True)
-    user_team_id = Column(INT, nullable=False)
+    __tablename__ = 'folders'
+    id = Column(Integer, nullable=False, autoincrement=True, primary_key=True)
+    user_team_id = Column(Integer, nullable=False)
 
-    user_id = Column(INT, nullable=False)
-    team_id = Column(INT, nullable=False)
-    divider = Column(BLOB, nullable=False)
+    user_id = Column(Integer, nullable=False)
+    team_id = Column(Integer, nullable=False)
+    divider = Column(Boolean, nullable=False)
 
-    ChildFolders = relationship("ChildFolder", back_populates="Folder")
-    Schedules = relationship("Schedule", back_populates="Folder")
+    child_folders = relationship("ChildFolder", back_populates="folder")
+    schedules = relationship("Schedule", back_populates="folder")

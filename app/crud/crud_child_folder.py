@@ -8,7 +8,11 @@ engine = engineconn()
 session = engine.sessionmaker()
 
 class CRUDChildFolder:
-    def get_multiple(self, child_folder_id) -> List[ChildFolder]:
+    def get_multiple_in_folder(self, folder_id: int) -> List[ChildFolder]:
+        child_folders = session.query(ChildFolder).filter_by(folder_id=folder_id).all()
+        return child_folders
+
+    def get_multiple_in_child_folder(self, child_folder_id: int) -> List[ChildFolder]:
         child_folders = session.query(ChildFolder).filter_by(child_folder_id=child_folder_id).all()
         return child_folders
 
@@ -25,7 +29,7 @@ class CRUDChildFolder:
         return session.commit()
 
     # 구분이 필요한 가?
-    def update_in_child_folder(self, child_folder_id: str, update_folder: ChildFolderUpdate) -> ChildFolder:
+    def update_in_child_folder(self, child_folder_id: int, update_folder: ChildFolderUpdate) -> ChildFolder:
         found_child_folder = session.query(ChildFolder).filter_by(id=child_folder_id).first()
         found_child_folder.name = update_folder.name
 

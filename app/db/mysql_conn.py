@@ -1,5 +1,5 @@
 from sqlalchemy import *
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 app = {
     'name': 'mysql+pymysql',
@@ -11,6 +11,8 @@ app = {
 }
 
 conn_string = f'{app["name"]}://{app["user"]}:{app["password"]}@{app["host"]}:{app["port"]}/{app["dbconn"]}'
+
+Base = declarative_base()
 
 class engineconn:
 
