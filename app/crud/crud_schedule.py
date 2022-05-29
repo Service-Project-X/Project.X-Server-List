@@ -1,7 +1,8 @@
 from typing import List
 
 from app.db.mysql_conn import engineconn
-from app.schemas.schedule import ScheduleCreate, Schedule, ScheduleUpdate
+from app.models.schedule import Schedule
+from app.schemas import schedule
 
 engine = engineconn()
 session = engine.sessionmaker()
@@ -19,19 +20,19 @@ class CRUDSchedule:
         found_schedules = session.query(Schedule).filter_by(child_folder_id).all()
         return found_schedules
 
-    def create_in_folder(self, create_schedule: ScheduleCreate):
+    def create_in_folder(self, create_schedule: schedule.ScheduleCreate):
         schedule = Schedule(folder_id=create_schedule.folder_id, title=create_schedule.title, content=create_schedule.content, image=create_schedule.image)
         session.add(schedule)
         session.commit()
         return
 
-    def create_in_child_folder(self, create_schedule: ScheduleCreate):
+    def create_in_child_folder(self, create_schedule: schedule.ScheduleCreate):
         schedule = Schedule(child_folder_id=create_schedule.folder_id, title=create_schedule.title, content=create_schedule.content, image=create_schedule.image)
         session.add(schedule)
         session.commit()
         return
 
-    def update(self, schedule_id: int, update_schedule: ScheduleUpdate):
+    def update(self, schedule_id: int, update_schedule: schedule.ScheduleUpdate):
         found_schedule: Schedule = session.query(Schedule).filter_by(id=schedule_id).first()
         found_schedule.title = update_schedule.title
         found_schedule.content = update_schedule.content
