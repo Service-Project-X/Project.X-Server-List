@@ -49,4 +49,4 @@ class Folder:
         deleted_folder = self.folder_repository.delete(folder_id)
         new_custom_response_type = custom_response_type.CustomResponseType
         new_custom_response_type.message = deleted_folder
-        return 
+        return new_custom_response_type
